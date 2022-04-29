@@ -31,11 +31,11 @@ export class AppComponent {
     this.show = e;
   }
 
-  cerrar(e: string){
+  cerrar(_: string){
     this.show = this.opciones.inicial;
   }
 
-  tableDestroy(e:void){
+  tableDestroy(){
     this.counterAppear++;
   }
 
