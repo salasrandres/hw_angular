@@ -3,6 +3,7 @@
     <app-opcion [title]="titleOptions.opcion1" (click)="change(opciones.opcion1)"></app-opcion>
     <app-opcion [title]="titleOptions.opcion2" (click)="change(opciones.opcion2)"></app-opcion>
     <app-opcion [title]="titleOptions.opcion3" (click)="change(opciones.opcion3)"></app-opcion>
+    <app-opcion [title]="titleOptions.opcion4" (click)="change(opciones.opcion4)"></app-opcion>
 </div>
 <div class="container">
     <app-close align="right" *ngIf="show !== opciones.nopcion"
@@ -10,4 +11,5 @@
     <app-panel-aprende *ngIf="opciones.opcion1 === show"></app-panel-aprende>
     <app-panel-basado *ngIf="opciones.opcion2 === show"></app-panel-basado>
     <app-panel-declarativo *ngIf="opciones.opcion3 === show"></app-panel-declarativo>
+    <app-table *ngIf="opciones.opcion4 === show" [appear]="counterAppear" (destroyed)="tableDestroy()"></app-table>
 </div>

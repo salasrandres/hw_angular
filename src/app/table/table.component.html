@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Secret Identity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let x of jsonInfo">
+            <td>{{x.name}}</td>
+            <td>{{x.age}}</td>
+            <td>{{x.secretIdentity}}</td>
+        </tr>
+    </tbody>
+</table>

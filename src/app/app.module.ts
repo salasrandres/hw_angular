@@ -9,6 +9,7 @@ import { PanelDeclarativoComponent } from './panel-declarativo/panel-declarativo
 import { PanelBasadoComponent } from './panel-basado/panel-basado.component';
 import { PanelAprendeComponent } from './panel-aprende/panel-aprende.component';
 import { CloseComponent } from './close/close.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CloseComponent } from './close/close.component';
     PanelDeclarativoComponent,
     PanelBasadoComponent,
     PanelAprendeComponent,
-    CloseComponent
+    CloseComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
