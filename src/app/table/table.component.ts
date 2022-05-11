@@ -1,14 +1,26 @@
-import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnInit, OnChanges {
+  @Input() appear:number = 0;
+  @Input() wordtofilter:string = '';
 
-  @Input() appear: number = 0;
-  @Output() destroyed = new EventEmitter<void>();
+  aux = [{
+    name: '',
+    age: 0,
+    secretIdentity: ''
+  }];
+
+  options: any = {
+    0: () => [],
+    1: () => [this.jsonInfo[0]],
+    2: () => this.jsonInfo
+  }
+
   jsonInfo = [
     {
       "name": "Molecule Man",
@@ -45,20 +57,12 @@ export class TableComponent implements OnInit, OnDestroy {
   ];
 
   constructor() { }
-
-  ngOnInit(): void {
-    if (this.appear === 0) {
-      this.jsonInfo = [];
-    }
-    else {
-      if (this.appear === 1) {
-        this.jsonInfo = [this.jsonInfo[0]];
-      }
-    }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.aux = this.jsonInfo.filter(x => x.name.includes(this.wordtofilter));
   }
 
-  ngOnDestroy(): void {
-    this.destroyed.emit();
+  ngOnInit(): void {
+    this.aux = this.options[this.appear]();
   }
 
 }

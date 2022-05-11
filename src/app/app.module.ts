@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { PanelBasadoComponent } from './panel-basado/panel-basado.component';
 import { PanelAprendeComponent } from './panel-aprende/panel-aprende.component';
 import { CloseComponent } from './close/close.component';
 import { TableComponent } from './table/table.component';
+import { TablecontainerComponent } from './tablecontainer/tablecontainer.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { TableComponent } from './table/table.component';
     PanelBasadoComponent,
     PanelAprendeComponent,
     CloseComponent,
-    TableComponent
+    TableComponent,
+    TablecontainerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

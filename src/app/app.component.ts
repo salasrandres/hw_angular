@@ -7,12 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular_vacaciones';
-  titleOptions = {
+
+  titleOptions: Record<string, string> = {
     opcion1: 'Declarativo',
     opcion2: 'Basado en componentes',
     opcion3: 'Aprende una vez',
     opcion4: 'Miembros'
   }
+
+  cerrado = '';
 
   counterAppear:number = 0;
 
@@ -32,11 +35,14 @@ export class AppComponent {
   }
 
   cerrar(_: string){
+    this.cerrado = `Se cerro la pestana ${this.titleOptions["opcion"+this.show]}`;
     this.show = this.opciones.inicial;
   }
 
   tableDestroy(){
-    this.counterAppear++;
+    if(this.counterAppear < 2){
+      this.counterAppear++;
+    }
   }
 
 }
