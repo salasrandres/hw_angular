@@ -1,13 +1,17 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
+import { HeroesService } from '../heroes.service';
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit, OnChanges {
-  @Input() appear:number = 0;
-  @Input() wordtofilter:string = '';
+  @Input() appear: number = 0;
+  @Input() wordtofilter: string = '';
+
+  jsonInfo: Hero[] = [];
 
   aux = [{
     name: '',
@@ -20,49 +24,25 @@ export class TableComponent implements OnInit, OnChanges {
     1: () => [this.jsonInfo[0]],
     2: () => this.jsonInfo
   }
-
-  jsonInfo = [
-    {
-      "name": "Molecule Man",
-      "age": 29,
-      "secretIdentity": "Dan Jukes",
-      "powers": [
-        "Radiation resistance",
-        "Turning tiny",
-        "Radiation blast"
-      ]
-    },
-    {
-      "name": "Madame Uppercut",
-      "age": 39,
-      "secretIdentity": "Jane Wilson",
-      "powers": [
-        "Million tonne punch",
-        "Damage resistance",
-        "Superhuman reflexes"
-      ]
-    },
-    {
-      "name": "Eternal Flame",
-      "age": 1000000,
-      "secretIdentity": "Unknown",
-      "powers": [
-        "Immortality",
-        "Heat Immunity",
-        "Inferno",
-        "Teleportation",
-        "Interdimensional travel"
-      ]
-    }
-  ];
-
-  constructor() { }
+  
+  constructor(private heroesSerice: HeroesService) {
+    heroesSerice.get().subscribe(data => {
+      this.jsonInfo = data;
+      this.aux = this.options[this.appear]();
+    });
+  }
   ngOnChanges(changes: SimpleChanges): void {
     this.aux = this.jsonInfo.filter(x => x.name.includes(this.wordtofilter));
   }
 
   ngOnInit(): void {
-    this.aux = this.options[this.appear]();
   }
 
+}
+
+interface Hero {
+  name: string,
+  age: number,
+  secretIdentity: string,
+  powers: string[]
 }

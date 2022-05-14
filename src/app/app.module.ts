@@ -13,6 +13,8 @@ import { CloseComponent } from './close/close.component';
 import { TableComponent } from './table/table.component';
 import { TablecontainerComponent } from './tablecontainer/tablecontainer.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { TablecontainerComponent } from './tablecontainer/tablecontainer.compone
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],
